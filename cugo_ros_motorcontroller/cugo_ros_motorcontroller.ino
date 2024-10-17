@@ -47,6 +47,7 @@ void job_100ms()
   check_failsafe();
   // エンコーダカウントをSDKから取得
   ld2_get_cmd();
+  change_cmd_mode();
 }
 
 void job_1000ms()
@@ -202,6 +203,7 @@ void setup()
   packetSerial.begin(115200);
   packetSerial.setStream(&Serial);
   packetSerial.setPacketHandler(&onSerialPacketReceived);
+
 }
 
 void loop()

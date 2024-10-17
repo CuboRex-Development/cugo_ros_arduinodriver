@@ -130,6 +130,8 @@
     void cugo_calc_necessary_count(float distance); 
     bool cugo_check_count_achievement(int motor_num_);
     void cugo_move_pid(float target_rpm,bool use_pid);//単位はm,rpm
+    void change_cmd_mode();
+    void return_all_data();
 
   //テスト関数
     void cugo_test(int test_number);//テスト用関数
