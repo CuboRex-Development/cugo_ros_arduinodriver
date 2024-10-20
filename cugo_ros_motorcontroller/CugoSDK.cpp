@@ -54,13 +54,13 @@ void cugo_init() {
   Serial1.begin(115200, SERIAL_8N1);  //BLDCとの通信
 
   delay(1000);  //LD-2起動待機
-  return_all_data();
+  //return_all_data();
 
   //ボタン関連
   //pinMode(CUGO_CMD_BUTTON_PIN, INPUT_PULLUP);
   //attachInterrupt(digitalPinToInterrupt(CUGO_CMD_BUTTON_PIN),cugo_button_interrupt, CHANGE);
 
-  //ld2_set_feedback(2, 0b10000001);  //freq{0:10[hz] 1:50[hz] 2:100[hz]} kindof_data{0b1:Mode 0b10:CMD_RPM 0b100:CurrentRPM 0b1000:AveCurrentRPM 0b10000000:EncorderData}
+  ld2_set_feedback(2, 0b10000001);  //freq{0:10[hz] 1:50[hz] 2:100[hz]} kindof_data{0b1:Mode 0b10:CMD_RPM 0b100:CurrentRPM 0b1000:AveCurrentRPM 0b10000000:EncorderData}
   delay(1000);
   if (!(ITimer0.attachInterruptInterval(cugo_ld2_feedback_dutation * 1000, cugo_timer_handler0))) {
     Serial.println(F("Can't set ITimer0. Select another freq. or timer"));
@@ -1605,8 +1605,8 @@ void ld2_set_encorder(unsigned char frame[12]) {
 
   cugo_current_count_L += diff_L;
   cugo_current_count_R += diff_R;
-  cugo_prev_encoder_L = cugo_current_count_L;
-  cugo_prev_encoder_R = cugo_current_count_R;
+  cugo_prev_encoder_L = encoderL;
+  cugo_prev_encoder_R = encoderR;
 }
 
 void ld2_encoder_reset() {
